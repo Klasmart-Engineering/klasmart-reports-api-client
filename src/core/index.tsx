@@ -22,10 +22,16 @@ import {
     QueryClientProvider,
     QueryClientProviderProps,
 } from "react-query";
-import { ClassAttendanceRateGroupRequest, ClassAttendanceRateGroupResponse, getClassAttendanceRateGroup } from "../api";
+import { ClassAttendanceRateGroupRequest, ClassAttendanceRateGroupResponse, getClassAttendanceRateGroup } from "../api/attendance";
+import { getPendingAssignments, PendingAssignmentsRequest, PendingAssignmentsResponse } from "../api/assignments";
+import { ContentTeacherRequest, ContentTeacherResponse, getContentTeacher } from "../api/content";
+import { ClassTeacherLoadRequest, ClassTeacherLoadResponse, getClassTeacherLoad } from "../api/load";
 
 interface ReportsApiActions {
     getClassAttendanceRateGroup: (request: ClassAttendanceRateGroupRequest, options?: RequestConfigOptions) => Promise<ClassAttendanceRateGroupResponse>;
+    getPendingAssignments: (request: PendingAssignmentsRequest, options?: RequestConfigOptions) => Promise<PendingAssignmentsResponse>;
+    getContentTeacher: (request: ContentTeacherRequest, options?: RequestConfigOptions) => Promise<ContentTeacherResponse>;
+    getClassTeacherLoad: (request: ClassTeacherLoadRequest, options?: RequestConfigOptions) => Promise<ClassTeacherLoadResponse>;
 }
 
 interface ReportsApiClient {
@@ -61,6 +67,9 @@ const ReportsApiClientContext = createContext<ReportsApiClient>({
     updateHttpConfig: () => { throw new ReportsApiClientNoProviderError(); },
     actions: {
         getClassAttendanceRateGroup: () => { throw new ReportsApiClientNoProviderError(); },
+        getPendingAssignments: () => { throw new ReportsApiClientNoProviderError(); },
+        getContentTeacher: () => { throw new ReportsApiClientNoProviderError(); },
+        getClassTeacherLoad: () => { throw new ReportsApiClientNoProviderError(); },
     },
 });
 
@@ -102,14 +111,28 @@ export function ReportsApiClientProvider (props: ProviderProps) {
     const getClassAttendanceRateGroupAction = useCallback((request: ClassAttendanceRateGroupRequest, options?: RequestConfigOptions) => {
         return getClassAttendanceRateGroup(axiosClient, request, options?.config);
     }, [ axiosClient ]);
-
+    const getPendingAssignmentsAction = useCallback((request: PendingAssignmentsRequest, options?: RequestConfigOptions) => {
+        return getPendingAssignments(axiosClient, request, options?.config);
+    }, [ axiosClient ]);
+    const getContentTeacherAction = useCallback((request: ContentTeacherRequest, options?: RequestConfigOptions) => {
+        return getContentTeacher(axiosClient, request, options?.config);
+    }, [ axiosClient ]);
+    const getClassTeacherLoadAction = useCallback((request: ClassTeacherLoadRequest, options?: RequestConfigOptions) => {
+        return getClassTeacherLoad(axiosClient, request, options?.config);
+    }, [ axiosClient ]);
 
     const actions = useMemo(() => {
         return {
             getClassAttendanceRateGroup: getClassAttendanceRateGroupAction,
+            getPendingAssignments: getPendingAssignmentsAction,
+            getContentTeacher: getContentTeacherAction,
+            getClassTeacherLoad: getClassTeacherLoadAction
         };
     }, [
         getClassAttendanceRateGroupAction,
+        getPendingAssignmentsAction,
+        getContentTeacherAction,
+        getClassTeacherLoadAction
     ]);
 
     return (

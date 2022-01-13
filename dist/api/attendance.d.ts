@@ -1,6 +1,6 @@
+import { BaseRequest, BaseResponse, RequestConfigQueryOptions } from "./shared";
 import { AxiosInstance, AxiosRequestConfig } from "axios";
 import { QueryKey } from "react-query";
-import { BaseRequest, BaseResponse, RequestConfigQueryOptions } from "./shared";
 export interface ClassAttendanceRateGroupRequest extends BaseRequest {
 }
 export interface ClassAttendanceRateGroupResponse extends BaseResponse {

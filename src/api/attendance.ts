@@ -1,7 +1,17 @@
-import { AxiosInstance, AxiosRequestConfig } from "axios";
-import { QueryKey, useQuery } from "react-query";
-import { BaseRequest, BaseResponse, RequestConfigQueryOptions } from "./shared";
 import { useReportsApiClient } from "../core";
+import {
+    BaseRequest,
+    BaseResponse,
+    RequestConfigQueryOptions,
+} from "./shared";
+import {
+    AxiosInstance
+    , AxiosRequestConfig,
+} from "axios";
+import {
+    QueryKey,
+    useQuery,
+} from "react-query";
 
 export interface ClassAttendanceRateGroupRequest extends BaseRequest {}
 

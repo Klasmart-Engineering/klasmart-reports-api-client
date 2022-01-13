@@ -37,7 +37,10 @@ exports.useReportsApiClient = exports.ReportsApiClientProvider = void 0;
 const axios_1 = __importDefault(require("axios"));
 const react_1 = __importStar(require("react"));
 const react_query_1 = require("react-query");
-const api_1 = require("../api");
+const attendance_1 = require("../api/attendance");
+const assignments_1 = require("../api/assignments");
+const content_1 = require("../api/content");
+const load_1 = require("../api/load");
 class ReportsApiClientNoProviderError extends Error {
     constructor() {
         super(`useReportsApiClient must be used within a ReportsApiClientContext.Provider`);
@@ -50,6 +53,9 @@ const ReportsApiClientContext = (0, react_1.createContext)({
     updateHttpConfig: () => { throw new ReportsApiClientNoProviderError(); },
     actions: {
         getClassAttendanceRateGroup: () => { throw new ReportsApiClientNoProviderError(); },
+        getPendingAssignments: () => { throw new ReportsApiClientNoProviderError(); },
+        getContentTeacher: () => { throw new ReportsApiClientNoProviderError(); },
+        getClassTeacherLoad: () => { throw new ReportsApiClientNoProviderError(); },
     },
 });
 function ReportsApiClientProvider(props) {
@@ -70,14 +76,29 @@ function ReportsApiClientProvider(props) {
     }, [axiosClient, queryClient]);
     const updatedProps = Object.assign({ client: queryClient }, rest);
     const getClassAttendanceRateGroupAction = (0, react_1.useCallback)((request, options) => {
-        return (0, api_1.getClassAttendanceRateGroup)(axiosClient, request, options === null || options === void 0 ? void 0 : options.config);
+        return (0, attendance_1.getClassAttendanceRateGroup)(axiosClient, request, options === null || options === void 0 ? void 0 : options.config);
+    }, [axiosClient]);
+    const getPendingAssignmentsAction = (0, react_1.useCallback)((request, options) => {
+        return (0, assignments_1.getPendingAssignments)(axiosClient, request, options === null || options === void 0 ? void 0 : options.config);
+    }, [axiosClient]);
+    const getContentTeacherAction = (0, react_1.useCallback)((request, options) => {
+        return (0, content_1.getContentTeacher)(axiosClient, request, options === null || options === void 0 ? void 0 : options.config);
+    }, [axiosClient]);
+    const getClassTeacherLoadAction = (0, react_1.useCallback)((request, options) => {
+        return (0, load_1.getClassTeacherLoad)(axiosClient, request, options === null || options === void 0 ? void 0 : options.config);
     }, [axiosClient]);
     const actions = (0, react_1.useMemo)(() => {
         return {
             getClassAttendanceRateGroup: getClassAttendanceRateGroupAction,
+            getPendingAssignments: getPendingAssignmentsAction,
+            getContentTeacher: getContentTeacherAction,
+            getClassTeacherLoad: getClassTeacherLoadAction
         };
     }, [
         getClassAttendanceRateGroupAction,
+        getPendingAssignmentsAction,
+        getContentTeacherAction,
+        getClassTeacherLoadAction
     ]);
     return (react_1.default.createElement(ReportsApiClientContext.Provider, { value: {
             queryClient,

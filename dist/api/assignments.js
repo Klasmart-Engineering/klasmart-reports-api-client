@@ -9,19 +9,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.useGetClassAttendanceRateGroup = exports.GET_CLASS_ATTENDANCE_RATE_GROUP_QUERY_KEY = exports.getClassAttendanceRateGroup = void 0;
-const react_query_1 = require("react-query");
+exports.useGetPendingAssignments = exports.GET_PENDING_ASSIGNMENTS_QUERY_KEY = exports.getPendingAssignments = void 0;
 const core_1 = require("../core");
-function getClassAttendanceRateGroup(client, request, config) {
+const react_query_1 = require("react-query");
+function getPendingAssignments(client, request, config) {
     return __awaiter(this, void 0, void 0, function* () {
         const resp = yield client.get(`/`, Object.assign(Object.assign({}, config), { params: Object.assign(Object.assign({}, request), config === null || config === void 0 ? void 0 : config.params) }));
         return resp.data;
     });
 }
-exports.getClassAttendanceRateGroup = getClassAttendanceRateGroup;
-exports.GET_CLASS_ATTENDANCE_RATE_GROUP_QUERY_KEY = `getClassAttendanceRateGroup`;
-function useGetClassAttendanceRateGroup(request, options) {
+exports.getPendingAssignments = getPendingAssignments;
+exports.GET_PENDING_ASSIGNMENTS_QUERY_KEY = `getPendingAssignments`;
+function useGetPendingAssignments(request, options) {
     const { axiosClient } = (0, core_1.useReportsApiClient)();
-    return (0, react_query_1.useQuery)([exports.GET_CLASS_ATTENDANCE_RATE_GROUP_QUERY_KEY, request], () => getClassAttendanceRateGroup(axiosClient, request, options === null || options === void 0 ? void 0 : options.config), options === null || options === void 0 ? void 0 : options.queryOptions);
+    return (0, react_query_1.useQuery)([exports.GET_PENDING_ASSIGNMENTS_QUERY_KEY, request], () => getPendingAssignments(axiosClient, request, options === null || options === void 0 ? void 0 : options.config), options === null || options === void 0 ? void 0 : options.queryOptions);
 }
-exports.useGetClassAttendanceRateGroup = useGetClassAttendanceRateGroup;
+exports.useGetPendingAssignments = useGetPendingAssignments;
