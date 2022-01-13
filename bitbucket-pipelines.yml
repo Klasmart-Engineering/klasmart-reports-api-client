@@ -1,0 +1,20 @@
+image: node:16
+
+pipelines:
+  pull-requests:
+    '**':
+      - parallel:
+        - step:
+            name: Build
+            caches:
+              - node
+            script:
+              - npm ci --no-audit --no-progress
+              - npm run build
+        - step:
+            name: Code Linting
+            caches:
+              - node
+            script:
+              - npm install eslint
+              - npx eslint .
