@@ -2,6 +2,7 @@ import { useReportsApiClient } from "../core";
 import {
     BaseRequest,
     BaseResponse,
+    ReportId,
     RequestConfigQueryOptions,
 } from "./shared";
 import {
@@ -31,6 +32,7 @@ export async function getContentTeacher (client: AxiosInstance, request: Content
         ...config,
         params: {
             ...request,
+            repid: ReportId.CONTENTTEACHER,
             ...config?.params,
         },
     });

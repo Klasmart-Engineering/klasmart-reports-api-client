@@ -16,11 +16,15 @@ export interface RequestConfigMutationOptions<TData, TVariables> extends Request
     mutationOptions?: Omit<UseMutationOptions<TData, unknown, TVariables>, 'queryKey' | 'queryFn'>;
 }
 
-export type ReportId = `clsattendrategrp` | `clsteacher` | `contentteacher` | `pendingassignment` | `upcomingschedule`
+export enum ReportId {
+    CLASSSATTENDANCERATEGRP = `clsattendrategrp`,
+    CLASSTEACHER = `clsteacher`,
+    CONTENTTEACHER = `contentteacher`,
+    PENDINGASSIGNMENT = `pendingassignment`,
+}
 
 export interface BaseRequest {
     org: string;
-    repid: ReportId;
 }
 
 export interface BaseResponse {
