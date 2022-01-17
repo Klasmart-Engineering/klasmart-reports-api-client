@@ -32,7 +32,7 @@ export async function getContentTeacher (client: AxiosInstance, request: Content
         ...config,
         params: {
             ...request,
-            repid: ReportId.CONTENTTEACHER,
+            repid: ReportId.CONTENT_TEACHER,
             ...config?.params,
         },
     });

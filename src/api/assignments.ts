@@ -29,7 +29,7 @@ export async function getPendingAssignments (client: AxiosInstance, request: Pen
         ...config,
         params: {
             ...request,
-            repid: ReportId.PENDINGASSIGNMENT,
+            repid: ReportId.PENDING_ASSIGNMENT,
             ...config?.params,
         },
     });

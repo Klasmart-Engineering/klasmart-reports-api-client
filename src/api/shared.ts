@@ -17,10 +17,10 @@ export interface RequestConfigMutationOptions<TData, TVariables> extends Request
 }
 
 export enum ReportId {
-    CLASSSATTENDANCERATEGRP = `clsattendrategrp`,
-    CLASSTEACHER = `clsteacher`,
-    CONTENTTEACHER = `contentteacher`,
-    PENDINGASSIGNMENT = `pendingassignment`,
+    CLASS_ATTENDANCE_RATE_GROUP = `clsattendrategrp`,
+    CLASS_TEACHER = `clsteacher`,
+    CONTENT_TEACHER = `contentteacher`,
+    PENDING_ASSIGNMENT = `pendingassignment`,
 }
 
 export interface BaseRequest {

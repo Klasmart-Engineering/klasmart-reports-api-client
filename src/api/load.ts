@@ -30,7 +30,7 @@ export async function getClassTeacherLoad (client: AxiosInstance, request: Class
         ...config,
         params: {
             ...request,
-            repid: ReportId.CLASSTEACHER,
+            repid: ReportId.CLASS_TEACHER,
             ...config?.params,
         },
     });

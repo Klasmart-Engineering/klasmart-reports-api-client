@@ -30,7 +30,7 @@ export async function getClassAttendanceRateGroup (client: AxiosInstance, reques
         ...config,
         params: {
             ...request,
-            repid: ReportId.CLASSSATTENDANCERATEGRP,
+            repid: ReportId.CLASS_ATTENDANCE_RATE_GROUP,
             ...config?.params,
         },
     });
