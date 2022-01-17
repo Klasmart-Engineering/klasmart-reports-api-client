@@ -9,10 +9,14 @@ export interface RequestConfigQueryOptions<TData> extends RequestConfigOptions {
 export interface RequestConfigMutationOptions<TData, TVariables> extends RequestConfigOptions {
     mutationOptions?: Omit<UseMutationOptions<TData, unknown, TVariables>, 'queryKey' | 'queryFn'>;
 }
-export declare type ReportId = `clsattendrategrp` | `clsteacher` | `contentteacher` | `pendingassignment` | `upcomingschedule`;
+export declare enum ReportId {
+    CLASSSATTENDANCERATEGRP = "clsattendrategrp",
+    CLASSTEACHER = "clsteacher",
+    CONTENTTEACHER = "contentteacher",
+    PENDINGASSIGNMENT = "pendingassignment"
+}
 export interface BaseRequest {
     org: string;
-    repid: ReportId;
 }
 export interface BaseResponse {
     errmsg?: string;

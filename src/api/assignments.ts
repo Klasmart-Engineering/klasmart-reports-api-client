@@ -2,6 +2,7 @@ import { useReportsApiClient } from "../core";
 import {
     BaseRequest,
     BaseResponse,
+    ReportId,
     RequestConfigQueryOptions,
 } from "./shared";
 import {
@@ -28,6 +29,7 @@ export async function getPendingAssignments (client: AxiosInstance, request: Pen
         ...config,
         params: {
             ...request,
+            repid: ReportId.PENDINGASSIGNMENT,
             ...config?.params,
         },
     });

@@ -11,10 +11,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.useGetPendingAssignments = exports.GET_PENDING_ASSIGNMENTS_QUERY_KEY = exports.getPendingAssignments = void 0;
 const core_1 = require("../core");
+const shared_1 = require("./shared");
 const react_query_1 = require("react-query");
 function getPendingAssignments(client, request, config) {
     return __awaiter(this, void 0, void 0, function* () {
-        const resp = yield client.get(`/`, Object.assign(Object.assign({}, config), { params: Object.assign(Object.assign({}, request), config === null || config === void 0 ? void 0 : config.params) }));
+        const resp = yield client.get(`/`, Object.assign(Object.assign({}, config), { params: Object.assign(Object.assign(Object.assign({}, request), { repid: shared_1.ReportId.PENDINGASSIGNMENT }), config === null || config === void 0 ? void 0 : config.params) }));
         return resp.data;
     });
 }
