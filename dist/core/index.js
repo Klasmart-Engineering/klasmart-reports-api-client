@@ -59,15 +59,18 @@ const ReportsApiClientContext = (0, react_1.createContext)({
     },
 });
 function ReportsApiClientProvider(props) {
-    const { children, config, queryOptions, interceptors } = props, rest = __rest(props, ["children", "config", "queryOptions", "interceptors"]);
+    const { children, config, queryOptions, responseInterceptors, requestInterceptors } = props, rest = __rest(props, ["children", "config", "queryOptions", "responseInterceptors", "requestInterceptors"]);
     const queryClient = (0, react_1.useMemo)(() => new react_query_1.QueryClient(queryOptions), [queryOptions]);
     const axiosClient = (0, react_1.useMemo)(() => {
         const client = axios_1.default.create(config);
-        for (const interceptor of interceptors !== null && interceptors !== void 0 ? interceptors : []) {
+        for (const interceptor of requestInterceptors !== null && requestInterceptors !== void 0 ? requestInterceptors : []) {
+            client.interceptors.request.use(interceptor.onFulfilled, interceptor.onRejected);
+        }
+        for (const interceptor of responseInterceptors !== null && responseInterceptors !== void 0 ? responseInterceptors : []) {
             client.interceptors.response.use(interceptor.onFulfilled, interceptor.onRejected);
         }
         return client;
-    }, [config, interceptors]);
+    }, [config, responseInterceptors, requestInterceptors]);
     const updateHttpConfig = (0, react_1.useCallback)((config) => {
         queryClient.cancelMutations();
         queryClient.cancelQueries();

@@ -43,8 +43,12 @@ interface ReportsApiClient {
 interface ProviderProps extends Partial<QueryClientProviderProps> {
     children: React.ReactNode;
     config: AxiosRequestConfig;
-    interceptors?: {
+    responseInterceptors?: {
         onFulfilled?: ((value: AxiosResponse<any, any>) => AxiosResponse<any, any> | Promise<AxiosResponse<any, any>>) | undefined;
+        onRejected?: ((error: AxiosError) => any) | undefined;
+    }[];
+    requestInterceptors?: {
+        onFulfilled?: ((value: AxiosRequestConfig<any>) => AxiosRequestConfig<any> | Promise<AxiosRequestConfig<any>>) | undefined;
         onRejected?: ((error: AxiosError) => any) | undefined;
     }[];
     queryOptions?: {
@@ -78,7 +82,8 @@ export function ReportsApiClientProvider (props: ProviderProps) {
         children,
         config,
         queryOptions,
-        interceptors,
+        responseInterceptors,
+        requestInterceptors,
         ...rest
     } = props;
 
@@ -86,12 +91,17 @@ export function ReportsApiClientProvider (props: ProviderProps) {
     const axiosClient = useMemo(() => {
         const client = axios.create(config);
 
-        for (const interceptor of interceptors ?? []) {
+
+        for (const interceptor of requestInterceptors ?? []) {
+            client.interceptors.request.use(interceptor.onFulfilled, interceptor.onRejected);
+        }
+
+        for (const interceptor of responseInterceptors ?? []) {
             client.interceptors.response.use(interceptor.onFulfilled, interceptor.onRejected);
         }
 
         return client;
-    }, [ config, interceptors ]);
+    }, [ config, responseInterceptors, requestInterceptors ]);
 
     const updateHttpConfig = useCallback((config: Partial<AxiosDefaults>) => {
         queryClient.cancelMutations();

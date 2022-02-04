@@ -21,8 +21,12 @@ interface ReportsApiClient {
 interface ProviderProps extends Partial<QueryClientProviderProps> {
     children: React.ReactNode;
     config: AxiosRequestConfig;
-    interceptors?: {
+    responseInterceptors?: {
         onFulfilled?: ((value: AxiosResponse<any, any>) => AxiosResponse<any, any> | Promise<AxiosResponse<any, any>>) | undefined;
+        onRejected?: ((error: AxiosError) => any) | undefined;
+    }[];
+    requestInterceptors?: {
+        onFulfilled?: ((value: AxiosRequestConfig<any>) => AxiosRequestConfig<any> | Promise<AxiosRequestConfig<any>>) | undefined;
         onRejected?: ((error: AxiosError) => any) | undefined;
     }[];
     queryOptions?: {
