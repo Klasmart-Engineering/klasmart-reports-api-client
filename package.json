@@ -1,6 +1,7 @@
 {
   "name": "@kidsloop/reports-api-client",
   "version": "2.0.0",
+  "private": true,
   "description": "KidsLoop Reports API client",
   "scripts": {
     "build": "tsc",

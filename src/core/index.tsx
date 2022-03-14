@@ -1,3 +1,27 @@
+import {
+    getPendingAssignments,
+    PendingAssignmentsRequest,
+    PendingAssignmentsResponse,
+}
+    from "../api/assignments";
+import {
+    ClassAttendanceRateGroupRequest,
+    ClassAttendanceRateGroupResponse,
+    getClassAttendanceRateGroup,
+}
+    from "../api/attendance";
+import {
+    ContentTeacherRequest,
+    ContentTeacherResponse,
+    getContentTeacher,
+}
+    from "../api/content";
+import {
+    ClassTeacherLoadRequest,
+    ClassTeacherLoadResponse,
+    getClassTeacherLoad,
+}
+    from "../api/load";
 import { RequestConfigOptions } from "../api/shared";
 import axios,
 {
@@ -22,10 +46,6 @@ import {
     QueryClientProvider,
     QueryClientProviderProps,
 } from "react-query";
-import { ClassAttendanceRateGroupRequest, ClassAttendanceRateGroupResponse, getClassAttendanceRateGroup } from "../api/attendance";
-import { getPendingAssignments, PendingAssignmentsRequest, PendingAssignmentsResponse } from "../api/assignments";
-import { ContentTeacherRequest, ContentTeacherResponse, getContentTeacher } from "../api/content";
-import { ClassTeacherLoadRequest, ClassTeacherLoadResponse, getClassTeacherLoad } from "../api/load";
 
 interface ReportsApiActions {
     getClassAttendanceRateGroup: (request: ClassAttendanceRateGroupRequest, options?: RequestConfigOptions) => Promise<ClassAttendanceRateGroupResponse>;
@@ -91,7 +111,6 @@ export function ReportsApiClientProvider (props: ProviderProps) {
     const axiosClient = useMemo(() => {
         const client = axios.create(config);
 
-
         for (const interceptor of requestInterceptors ?? []) {
             client.interceptors.request.use(interceptor.onFulfilled, interceptor.onRejected);
         }
@@ -101,7 +120,11 @@ export function ReportsApiClientProvider (props: ProviderProps) {
         }
 
         return client;
-    }, [ config, responseInterceptors, requestInterceptors ]);
+    }, [
+        config,
+        responseInterceptors,
+        requestInterceptors,
+    ]);
 
     const updateHttpConfig = useCallback((config: Partial<AxiosDefaults>) => {
         queryClient.cancelMutations();
@@ -136,17 +159,17 @@ export function ReportsApiClientProvider (props: ProviderProps) {
             getClassAttendanceRateGroup: getClassAttendanceRateGroupAction,
             getPendingAssignments: getPendingAssignmentsAction,
             getContentTeacher: getContentTeacherAction,
-            getClassTeacherLoad: getClassTeacherLoadAction
+            getClassTeacherLoad: getClassTeacherLoadAction,
         };
     }, [
         getClassAttendanceRateGroupAction,
         getPendingAssignmentsAction,
         getContentTeacherAction,
-        getClassTeacherLoadAction
+        getClassTeacherLoadAction,
     ]);
 
     return (
-        <ReportsApiClientContext.Provider 
+        <ReportsApiClientContext.Provider
             value={{
                 queryClient,
                 axiosClient,
