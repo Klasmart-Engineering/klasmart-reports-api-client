@@ -1,2 +1,8 @@
 .eslintrc.js
-node_modules
+.github
+.husky
+.versionrc
+bitbucket-pipelines.yml
+commitlint.config.js
+package-lock.json
+tsconfig.json

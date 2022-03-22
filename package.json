@@ -1,32 +1,38 @@
 {
-  "name": "@kidsloop/reports-api-client",
+  "name": "@kl-engineering/reports-api-client",
   "version": "2.0.0",
-  "private": true,
   "description": "KidsLoop Reports API client",
   "scripts": {
     "build": "tsc",
-    "postversion": "git push && git push --tags"
+    "release": "standard-version",
+    "lint": "eslint .",
+    "prepare": "husky install"
   },
   "main": "dist/main.js",
   "types": "dist/main.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org:calmisland/kidsloop-reports-api-client.git"
+    "url": "git+https://github.com/KL-Engineering/kidsloop-reports-api-client.git"
   },
   "author": "KidsLoop",
   "license": "ISC",
   "bugs": {
-    "url": "https://bitbucket.org/calmisland/kidsloop-reports-api-client/issues"
+    "url": "https://github.com/KL-Engineering/kidsloop-reports-api-client/issues"
   },
-  "homepage": "https://bitbucket.org/calmisland/kidsloop-reports-api-client#readme",
+  "homepage": "https://github.com/KL-Engineering/kidsloop-reports-api-client#readme",
   "devDependencies": {
-    "@kidsloop/eslint-config": "bitbucket:calmisland/kidsloop-eslint-config#1.4.1",
+    "@commitlint/cli": "16.2.3",
+    "@commitlint/config-conventional": "16.2.1",
+    "@kl-engineering/eslint-config": "2.0.3",
+    "@rushstack/eslint-patch": "1.1.1",
     "@testing-library/jest-dom": "5.16.1",
     "@testing-library/react-hooks": "7.0.2",
     "@types/jest": "27.4.0",
     "@types/testing-library__jest-dom": "5.14.2",
     "eslint": "8.6.0",
+    "husky": "^7.0.0",
     "jest": "27.4.7",
+    "standard-version": "9.3.2",
     "ts-jest": "27.1.2",
     "ts-node": "10.4.0",
     "typescript": "4.5.4"
@@ -38,5 +44,8 @@
   "dependencies": {
     "axios": "0.24.0",
     "react-query": "3.34.8"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   }
 }

@@ -32,17 +32,15 @@
         ]
     },
     "include": [
-        "src/**/*",
-        "**.js",
-        "**.jsx",
-        "**.ts",
-        "**.tsx"
+        ".eslintrc.js",
+        "**/*.js",
+        "**/*.jsx",
+        "**/*.ts",
+        "**/*.tsx"
     ],
     "exclude": [
         "node_modules",
-        "dist",
         "src/**/*.test.ts",
-        "src/**/*.test.tsx",
-        "tsconfig.json"
+        "src/**/*.test.tsx"
     ]
 }
