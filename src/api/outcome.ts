@@ -15,9 +15,11 @@ export interface StudentLearningOutcomeRequest extends BaseRequest {
 
 export interface StudentLearningOutcomeResponse extends BaseResponse {
     info: {
-        achieved: number;
-        not_achieved: number;
-        not_covered: number;
+        learning_outcomes: {
+            achieved: number;
+            not_achieved: number;
+            not_covered: number;
+        }
         skills: {
             skill: string;
             skill_name: string;
@@ -28,8 +30,15 @@ export interface StudentLearningOutcomeResponse extends BaseResponse {
     };
 }
 
+export interface StudentLearningOutcomeBackEndResponse extends BaseResponse {
+    info: {
+        learning_outcomes: string;
+        skills: string;
+    }
+}
+
 export async function getStudentLearningOutcome(client: AxiosInstance, request: StudentLearningOutcomeRequest, config?: AxiosRequestConfig) {
-    const resp = await client.get<StudentLearningOutcomeResponse>(`/`, {
+    const resp = await client.get<StudentLearningOutcomeBackEndResponse>(`/`, {
         ...config,
         params: {
             ...request,
@@ -37,7 +46,11 @@ export async function getStudentLearningOutcome(client: AxiosInstance, request: 
             ...config?.params,
         },
     });
-    return resp.data;
+    let learningOutComeData: StudentLearningOutcomeResponse;
+    learningOutComeData = JSON.parse(JSON.stringify(resp.data))
+    learningOutComeData.info.learning_outcomes = JSON.parse(resp.data.info.learning_outcomes);
+    learningOutComeData.info.skills = JSON.parse(resp.data.info.skills)
+    return learningOutComeData;
 }
 export const STUDENT_LEARNING_OUTCOME_KEY: QueryKey = `getStudentLearningOutcome`;
 
