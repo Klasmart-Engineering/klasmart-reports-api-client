@@ -15,14 +15,14 @@ export interface StudentLearningOutcomeRequest extends BaseRequest {
 
 export interface StudentLearningOutcomeResponse extends BaseResponse {
     info: {
-        acheived: number;
-        not_acheived: number;
+        achieved: number;
+        not_achieved: number;
         not_covered: number;
         skills: {
             skill: string;
             skill_name: string;
-            acheived: number;
-            not_acheived: number;
+            achieved: number;
+            not_achieved: number;
             total: number;
         }[]
     };
