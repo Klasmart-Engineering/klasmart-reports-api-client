@@ -19,6 +19,11 @@ export {
     useClassTeacherLoad,
 } from "./api/load";
 export {
+    StudentLearningOutcomeRequest,
+    StudentLearningOutcomeResponse,
+    useStudentLearningOutcome,
+} from "./api/outcome";
+export {
     ReportsApiClientProvider,
     useReportsApiClient,
 } from "./core";
