@@ -46,10 +46,13 @@ export async function getStudentLearningOutcome(client: AxiosInstance, request: 
             ...config?.params,
         },
     });
-    let learningOutComeData: StudentLearningOutcomeResponse;
-    learningOutComeData = JSON.parse(JSON.stringify(resp.data))
-    learningOutComeData.info.learning_outcomes = JSON.parse(resp.data.info.learning_outcomes);
-    learningOutComeData.info.skills = JSON.parse(resp.data.info.skills)
+    const learningOutComeData = <StudentLearningOutcomeResponse>{ ...resp.data, 
+            info : { 
+                ...resp.data.info, 
+                learning_outcomes: JSON.parse(resp.data.info.learning_outcomes), 
+                skills: JSON.parse(resp.data.info.skills)
+            }
+    };
     return learningOutComeData;
 }
 export const STUDENT_LEARNING_OUTCOME_KEY: QueryKey = `getStudentLearningOutcome`;
