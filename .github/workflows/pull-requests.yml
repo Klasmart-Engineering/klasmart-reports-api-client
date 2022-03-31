@@ -20,4 +20,4 @@ jobs:
 
     build:
         needs: [install]
-        uses: KL-Engineering/github-action-workflows/.github/workflows/npm-build.yml@v2.0.0
+        uses: KL-Engineering/github-action-workflows/.github/workflows/npm-build-upload-package.yml@v2.0.0
