@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.3](https://github.com/KL-Engineering/kidsloop-reports-api-client/branches/compare/v2.1.3%0Dv2.1.2) (2022-04-01)
+
+
+### 🐛 Bug Fixes
+
+* update github action workflow version to fix npm publish ([ea433a3](https://github.com/KL-Engineering/kidsloop-reports-api-client/commits/ea433a384786411281c6339bf9b32e0aa9dc5be1))
+
 ### [2.1.2](https://github.com/KL-Engineering/kidsloop-reports-api-client/branches/compare/v2.1.2%0Dv2.1.1) (2022-04-01)
 
 
