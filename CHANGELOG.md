@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.2](https://github.com/KL-Engineering/kidsloop-reports-api-client/branches/compare/v2.1.2%0Dv2.1.1) (2022-04-01)
+
+
+### 🐛 Bug Fixes
+
+* update github action workflow version to fix download build artifact name ([a04d5d4](https://github.com/KL-Engineering/kidsloop-reports-api-client/commits/a04d5d45b87f6a767564f5745b6ddf7344d9d74d))
+
 ### [2.1.1](https://github.com/KL-Engineering/kidsloop-reports-api-client/branches/compare/v2.1.1%0Dv2.1.0) (2022-04-01)
 
 
