@@ -22,6 +22,11 @@ import {
     getClassTeacherLoad,
 }
     from "../api/load";
+import {
+    getStudentLearningOutcome,
+    StudentLearningOutcomeRequest,
+    StudentLearningOutcomeResponse,
+} from "../api/outcome";
 import { RequestConfigOptions } from "../api/shared";
 import axios,
 {
@@ -52,6 +57,7 @@ interface ReportsApiActions {
     getPendingAssignments: (request: PendingAssignmentsRequest, options?: RequestConfigOptions) => Promise<PendingAssignmentsResponse>;
     getContentTeacher: (request: ContentTeacherRequest, options?: RequestConfigOptions) => Promise<ContentTeacherResponse>;
     getClassTeacherLoad: (request: ClassTeacherLoadRequest, options?: RequestConfigOptions) => Promise<ClassTeacherLoadResponse>;
+    getStudentLearningOutcome: (request: StudentLearningOutcomeRequest, options?: RequestConfigOptions) => Promise<StudentLearningOutcomeResponse>;
 }
 
 interface ReportsApiClient {
@@ -94,6 +100,7 @@ const ReportsApiClientContext = createContext<ReportsApiClient>({
         getPendingAssignments: () => { throw new ReportsApiClientNoProviderError(); },
         getContentTeacher: () => { throw new ReportsApiClientNoProviderError(); },
         getClassTeacherLoad: () => { throw new ReportsApiClientNoProviderError(); },
+        getStudentLearningOutcome: () => { throw new ReportsApiClientNoProviderError; },
     },
 });
 
@@ -153,6 +160,9 @@ export function ReportsApiClientProvider (props: ProviderProps) {
     const getClassTeacherLoadAction = useCallback((request: ClassTeacherLoadRequest, options?: RequestConfigOptions) => {
         return getClassTeacherLoad(axiosClient, request, options?.config);
     }, [ axiosClient ]);
+    const getStudentLearningOutcomeAction = useCallback((request: StudentLearningOutcomeRequest, options?: RequestConfigOptions) => {
+        return getStudentLearningOutcome(axiosClient, request, options?.config);
+    }, [ axiosClient ]);
 
     const actions = useMemo(() => {
         return {
@@ -160,12 +170,14 @@ export function ReportsApiClientProvider (props: ProviderProps) {
             getPendingAssignments: getPendingAssignmentsAction,
             getContentTeacher: getContentTeacherAction,
             getClassTeacherLoad: getClassTeacherLoadAction,
+            getStudentLearningOutcome: getStudentLearningOutcomeAction,
         };
     }, [
         getClassAttendanceRateGroupAction,
         getPendingAssignmentsAction,
         getContentTeacherAction,
         getClassTeacherLoadAction,
+        getStudentLearningOutcomeAction,
     ]);
 
     return (
