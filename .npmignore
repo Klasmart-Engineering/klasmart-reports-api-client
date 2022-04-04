@@ -1,7 +1,8 @@
 .eslintrc.js
 .github
 .husky
-.versionrc
+.versionrc.js
+.eslintignore
 bitbucket-pipelines.yml
 commitlint.config.js
 package-lock.json
