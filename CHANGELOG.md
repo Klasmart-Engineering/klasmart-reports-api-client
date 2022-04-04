@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/KL-Engineering/kidsloop-reports-api-client/branches/compare/v2.2.0%0Dv2.1.3) (2022-04-04)
+
+
+### ✨ Features
+
+* add getStudentAttendanceRate api (#5) ([4181fdc](https://github.com/KL-Engineering/kidsloop-reports-api-client/commits/4181fdcb93c53c448deab994337a4ae6b81e3c3f))
+
+
+### ♻️ Chores
+
+* remove project config files from npm installs ([d377246](https://github.com/KL-Engineering/kidsloop-reports-api-client/commits/d377246b96f82654e96ab25374d08eb084d4ed6c))
+
 ### [2.1.3](https://github.com/KL-Engineering/kidsloop-reports-api-client/branches/compare/v2.1.3%0Dv2.1.2) (2022-04-01)
 
 
