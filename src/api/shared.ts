@@ -21,6 +21,7 @@ export enum ReportId {
     CLASS_TEACHER = `clsteacher`,
     CONTENT_TEACHER = `contentteacher`,
     PENDING_ASSIGNMENT = `pendingassignment`,
+    STUDENT_ATTENDANCE = `student_attendrate`,
     STUDENT_LEARNING_OUTCOME = `student_learningoutcome`,
 }
 

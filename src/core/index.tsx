@@ -28,6 +28,12 @@ import {
     StudentLearningOutcomeResponse,
 } from "../api/outcome";
 import { RequestConfigOptions } from "../api/shared";
+import {
+    getStudentAttendanceRate,
+    StudentAttendanceRateRequest,
+    StudentAttendanceRateResponse,
+}
+    from "../api/studentAttendance";
 import axios,
 {
     AxiosDefaults,
@@ -57,6 +63,7 @@ interface ReportsApiActions {
     getPendingAssignments: (request: PendingAssignmentsRequest, options?: RequestConfigOptions) => Promise<PendingAssignmentsResponse>;
     getContentTeacher: (request: ContentTeacherRequest, options?: RequestConfigOptions) => Promise<ContentTeacherResponse>;
     getClassTeacherLoad: (request: ClassTeacherLoadRequest, options?: RequestConfigOptions) => Promise<ClassTeacherLoadResponse>;
+    getStudentAttendanceRate: (request: StudentAttendanceRateRequest, options?: RequestConfigOptions) => Promise<StudentAttendanceRateResponse>;
     getStudentLearningOutcome: (request: StudentLearningOutcomeRequest, options?: RequestConfigOptions) => Promise<StudentLearningOutcomeResponse>;
 }
 
@@ -100,6 +107,7 @@ const ReportsApiClientContext = createContext<ReportsApiClient>({
         getPendingAssignments: () => { throw new ReportsApiClientNoProviderError(); },
         getContentTeacher: () => { throw new ReportsApiClientNoProviderError(); },
         getClassTeacherLoad: () => { throw new ReportsApiClientNoProviderError(); },
+        getStudentAttendanceRate: () => { throw new ReportsApiClientNoProviderError(); },
         getStudentLearningOutcome: () => { throw new ReportsApiClientNoProviderError; },
     },
 });
@@ -160,6 +168,9 @@ export function ReportsApiClientProvider (props: ProviderProps) {
     const getClassTeacherLoadAction = useCallback((request: ClassTeacherLoadRequest, options?: RequestConfigOptions) => {
         return getClassTeacherLoad(axiosClient, request, options?.config);
     }, [ axiosClient ]);
+    const getStudentAttendanceRateAction = useCallback((request: StudentAttendanceRateRequest, options?: RequestConfigOptions) => {
+        return getStudentAttendanceRate(axiosClient, request, options?.config);
+    }, [ axiosClient ]);
     const getStudentLearningOutcomeAction = useCallback((request: StudentLearningOutcomeRequest, options?: RequestConfigOptions) => {
         return getStudentLearningOutcome(axiosClient, request, options?.config);
     }, [ axiosClient ]);
@@ -170,6 +181,7 @@ export function ReportsApiClientProvider (props: ProviderProps) {
             getPendingAssignments: getPendingAssignmentsAction,
             getContentTeacher: getContentTeacherAction,
             getClassTeacherLoad: getClassTeacherLoadAction,
+            getStudentAttendanceRate: getStudentAttendanceRateAction,
             getStudentLearningOutcome: getStudentLearningOutcomeAction,
         };
     }, [
@@ -177,6 +189,7 @@ export function ReportsApiClientProvider (props: ProviderProps) {
         getPendingAssignmentsAction,
         getContentTeacherAction,
         getClassTeacherLoadAction,
+        getStudentAttendanceRateAction,
         getStudentLearningOutcomeAction,
     ]);
 

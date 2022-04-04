@@ -24,6 +24,11 @@ export {
     useGetStudentLearningOutcome,
 } from "./api/outcome";
 export {
+    StudentAttendanceRateRequest,
+    StudentAttendanceRateResponse,
+    useGetStudentAttendanceRate,
+} from "./api/studentAttendance";
+export {
     ReportsApiClientProvider,
     useReportsApiClient,
 } from "./core";
