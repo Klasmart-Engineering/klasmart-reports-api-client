@@ -1,6 +1,6 @@
 {
   "name": "@kl-engineering/reports-api-client",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "KidsLoop Reports API client",
   "scripts": {
     "build": "tsc",

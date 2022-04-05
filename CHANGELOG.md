@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.2.1](https://github.com/KL-Engineering/kidsloop-reports-api-client/branches/compare/v2.2.1%0Dv2.2.0) (2022-04-05)
+
+
+### ⚙️ Continuous Integrations
+
+* add conventional pr title workflow ([80b4355](https://github.com/KL-Engineering/kidsloop-reports-api-client/commits/80b43550674ba39769deadc5dceb5e97cc12ae36))
+
+
+### 🐛 Bug Fixes
+
+* add code to handle norecord senario (#6) ([e9f2961](https://github.com/KL-Engineering/kidsloop-reports-api-client/commits/e9f2961ce2004914d7d83109b64912151c6db077))
+
 ## [2.2.0](https://github.com/KL-Engineering/kidsloop-reports-api-client/branches/compare/v2.2.0%0Dv2.1.3) (2022-04-04)
 
 
