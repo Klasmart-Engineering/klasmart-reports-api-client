@@ -56,8 +56,8 @@ export async function getStudentLearningOutcome (client: AxiosInstance, request:
         ...resp.data,
         info: {
             ...resp.data.info,
-            learning_outcomes: JSON.parse(resp.data.info.learning_outcomes),
-            skills: JSON.parse(resp.data.info.skills),
+            learning_outcomes: resp.data.info ? JSON.parse(resp.data.info.learning_outcomes) : {},
+            skills: resp.data.info ? JSON.parse(resp.data.info.skills) : [],
         },
     };
     return learningOutComeData;
