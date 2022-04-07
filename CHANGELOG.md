@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0](https://github.com/KL-Engineering/kidsloop-reports-api-client/branches/compare/v2.3.0%0Dv2.2.1) (2022-04-07)
+
+
+### ⚙️ Continuous Integrations
+
+* remove edited event type trigger from pr workflow ([9c09068](https://github.com/KL-Engineering/kidsloop-reports-api-client/commits/9c09068d47ad918e0706b23435e2ee436b5e1753))
+* separate pr workflows for meta info and commits ([2817d86](https://github.com/KL-Engineering/kidsloop-reports-api-client/commits/2817d869856bb1ff753f50f8df9da3a7f860f859))
+
+
+### ✨ Features
+
+* **widget:** api-added-for-student-assignment-completion (#7) ([8f4a954](https://github.com/KL-Engineering/kidsloop-reports-api-client/commits/8f4a954cb49918e3d9924c95b91eccb60a5daae4))
+
 ### [2.2.1](https://github.com/KL-Engineering/kidsloop-reports-api-client/branches/compare/v2.2.1%0Dv2.2.0) (2022-04-05)
 
 
