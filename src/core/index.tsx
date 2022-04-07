@@ -1,4 +1,9 @@
 import {
+    getStudentAssignmentCompletion,
+    StudentAssignmentCompletionRequest,
+    StudentAssignmentCompletionResponse,
+} from "../api/assignmentcompletion";
+import {
     getPendingAssignments,
     PendingAssignmentsRequest,
     PendingAssignmentsResponse,
@@ -65,6 +70,7 @@ interface ReportsApiActions {
     getClassTeacherLoad: (request: ClassTeacherLoadRequest, options?: RequestConfigOptions) => Promise<ClassTeacherLoadResponse>;
     getStudentAttendanceRate: (request: StudentAttendanceRateRequest, options?: RequestConfigOptions) => Promise<StudentAttendanceRateResponse>;
     getStudentLearningOutcome: (request: StudentLearningOutcomeRequest, options?: RequestConfigOptions) => Promise<StudentLearningOutcomeResponse>;
+    getStudentAssignmentCompletion: (request: StudentAssignmentCompletionRequest, options?: RequestConfigOptions) => Promise<StudentAssignmentCompletionResponse>;
 }
 
 interface ReportsApiClient {
@@ -90,10 +96,9 @@ interface ProviderProps extends Partial<QueryClientProviderProps> {
         defaultOptions?: DefaultOptions;
     };
 }
-
 class ReportsApiClientNoProviderError extends Error {
     constructor () {
-        super(`useReportsApiClient must be used within a ReportsApiClientContext.Provider`);
+        super (`useReportsApiClient must be used within a ReportsApiClientContext.Provider`);
         this.name = `NO_PROVIDER`;
     }
 }
@@ -109,6 +114,7 @@ const ReportsApiClientContext = createContext<ReportsApiClient>({
         getClassTeacherLoad: () => { throw new ReportsApiClientNoProviderError(); },
         getStudentAttendanceRate: () => { throw new ReportsApiClientNoProviderError(); },
         getStudentLearningOutcome: () => { throw new ReportsApiClientNoProviderError; },
+        getStudentAssignmentCompletion: () => { throw new ReportsApiClientNoProviderError; },
     },
 });
 
@@ -174,6 +180,9 @@ export function ReportsApiClientProvider (props: ProviderProps) {
     const getStudentLearningOutcomeAction = useCallback((request: StudentLearningOutcomeRequest, options?: RequestConfigOptions) => {
         return getStudentLearningOutcome(axiosClient, request, options?.config);
     }, [ axiosClient ]);
+    const getStudentAssignmentCompletionAction = useCallback((request: StudentAssignmentCompletionRequest, options?: RequestConfigOptions) => {
+        return getStudentAssignmentCompletion(axiosClient, request, options?.config);
+    }, [ axiosClient ]);
 
     const actions = useMemo(() => {
         return {
@@ -183,6 +192,7 @@ export function ReportsApiClientProvider (props: ProviderProps) {
             getClassTeacherLoad: getClassTeacherLoadAction,
             getStudentAttendanceRate: getStudentAttendanceRateAction,
             getStudentLearningOutcome: getStudentLearningOutcomeAction,
+            getStudentAssignmentCompletion: getStudentAssignmentCompletionAction,
         };
     }, [
         getClassAttendanceRateGroupAction,
@@ -191,6 +201,7 @@ export function ReportsApiClientProvider (props: ProviderProps) {
         getClassTeacherLoadAction,
         getStudentAttendanceRateAction,
         getStudentLearningOutcomeAction,
+        getStudentAssignmentCompletionAction,
     ]);
 
     return (

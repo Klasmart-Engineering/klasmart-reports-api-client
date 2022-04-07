@@ -1,4 +1,9 @@
 export {
+    StudentAssignmentCompletionRequest,
+    StudentAssignmentCompletionResponse,
+    useGetStudentAssignmentCompletion,
+} from "./api/assignmentcompletion";
+export {
     PendingAssignmentsRequest,
     PendingAssignmentsResponse,
     useGetPendingAssignments,

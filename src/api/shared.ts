@@ -23,6 +23,7 @@ export enum ReportId {
     PENDING_ASSIGNMENT = `pendingassignment`,
     STUDENT_ATTENDANCE = `student_attendrate`,
     STUDENT_LEARNING_OUTCOME = `student_learningoutcome`,
+    STUDENT_ASSIGNMENTCOMPLETION = `student_assesscomp`,
 }
 
 export interface BaseRequest {
